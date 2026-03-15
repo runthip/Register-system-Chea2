@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบรับสมัครนักเรียน 2569 | โรงเรียนเจียรวนนท์อุทิศ 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #f8fafc; }
+        .card { background: white; border-radius: 1rem; padding: 2rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-bottom: 2rem; }
+        .label { block text-sm font-semibold text-gray-700 mb-1; }
+        .input { width: 100%; border: 1px solid #cbd5e1; padding: 0.6rem; border-radius: 0.5rem; outline-color: #1d4ed8; }
+        .section-title { font-size: 1.25rem; font-weight: 600; color: #1e3a8a; border-left: 4px solid #1e3a8a; padding-left: 0.75rem; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="py-8 px-4">
+    <div class="max-w-5xl mx-auto">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-extrabold text-blue-900 mb-2">ใบสมัครเข้าศึกษาต่อ ปีการศึกษา 2569</h1>
+            <p class="text-xl text-blue-700">โรงเรียนเจียรวนนท์อุทิศ 2</p>
+        </header>
+
+        <form id="fullForm" class="space-y-6">
+            
+            <div class="card grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <h2 class="section-title">1. ข้อมูลการสมัคร</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="label">วันที่สมัคร</label>
+                            <input type="date" name="applyDate" class="input" required>
+                        </div>
+                        <div>
+                            <label class="label">ระดับชั้นที่สมัคร</label>
+                            <select name="grade" class="input" required>
+                                <option value="">-- เลือกชั้นเรียน --</option>
+                                <option>อนุบาล 2</option>
+                                <option>ประถมศึกษาปีที่ 1</option>
+                                <option>มัธยมศึกษาปีที่ 1</option>
+                                <option>มัธยมศึกษาปีที่ 4 (วิทย์-คณิต)</option>
+                                <option>มัธยมศึกษาปีที่ 4 (ศิลป์-อาชีพ)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4">
+                    <label class="label text-center">รูปถ่ายนักเรียน</label>
+                    <input type="file" id="imageInput" accept="image/*" class="text-xs">
+                    <img id="preview" class="hidden mt-2 w-32 h-40 object-cover rounded shadow">
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">2. ข้อมูลส่วนตัวนักเรียน</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div><label class="label">เลขประจำตัวประชาชน</label><input type="text" name="idCard" maxlength="13" class="input" required></div>
+                    <div><label class="label">ชื่อ-นามสกุล (ไทย)</label><input type="text" name="fullName" class="input" required></div>
+                    <div><label class="label">ชื่อเล่น</label><input type="text" name="nickname" class="input"></div>
+                    <div><label class="label">English Name</label><input type="text" name="engName" class="input"></div>
+                    <div><label class="label">เพศ</label><select name="gender" class="input"><option>ชาย</option><option>หญิง</option></select></div>
+                    <div><label class="label">วัน/เดือน/ปีเกิด</label><input type="date" name="dob" class="input"></div>
+                    <div><label class="label">สถานที่เกิด (รพ.)</label><input type="text" name="birthPlace" class="input"></div>
+                    <div><label class="label">ศาสนา</label><input type="text" name="religion" class="input"></div>
+                    <div><label class="label">กลุ่มเลือด</label><select name="blood" class="input"><option>A</option><option>B</option><option>O</option><option>AB</option></select></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">3. ที่อยู่และการเดินทาง</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div><label class="label">ที่อยู่ตามทะเบียนบ้าน/ปัจจุบัน</label><textarea name="address" class="input" rows="2"></textarea></div>
+                    <div>
+                        <label class="label">การเดินทางมาโรงเรียน</label>
+                        <select name="travelMode" class="input">
+                            <option>รถจักรยานยนต์</option><option>รถยนต์ส่วนตัว</option><option>รถรับ-ส่ง</option><option>รถโดยสาร</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 col-span-2">
+                        <div><label class="label text-xs">ห่างทางน้ำ (ม.)</label><input type="number" name="distWater" class="input"></div>
+                        <div><label class="label text-xs">ห่างถนนลูกรัง (ม.)</label><input type="number" name="distDirtRoad" class="input"></div>
+                        <div><label class="label text-xs">ห่างถนนลาดยาง (ม.)</label><input type="number" name="distPavedRoad" class="input"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">4. ข้อมูลครอบครัวและผู้ปกครอง</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="label">สถานภาพบิดามารดา</label><select name="familyStatus" class="input"><option>อยู่ร่วมกัน</option><option>แยกกันอยู่</option><option>หย่าร้าง</option></select></div>
+                    <div><label class="label">นักเรียนเป็นบุตรคนที่</label><input type="number" name="childOrder" class="input"></div>
+                    <div class="col-span-2"><label class="label">ชื่อ-สกุล ผู้ปกครองหลัก และเบอร์โทร</label><input type="text" name="parentInfo" class="input"></div>
+                    <div class="col-span-2">
+                        <label class="label">รายได้รวมครอบครัว/ปี</label>
+                        <select name="income" class="input">
+                            <option>ต่ำกว่า 50,000 บาท</option>
+                            <option>50,000 – 100,000 บาท</option>
+                            <option>100,001 – 200,000 บาท</option>
+                            <option>200,001 บาท ขึ้นไป</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-5 rounded-2xl shadow-xl transition-all text-xl">
+                🚀 ส่งใบสมัครเข้าสู่ระบบ
+            </button>
+        </form>
+
+        <footer class="text-center py-10 text-gray-400 text-sm">
+            © 2569 โรงเรียนเจียรวนนท์อุทิศ 2 | ระบบพัฒนาโดย AI Collaborator
+        </footer>
+    </div>
+
+    <script>
+        const scriptURL = 'ใส่_WEB_APP_URL_ของคุณที่นี่';
+        const form = document.getElementById('fullForm');
+        const imgInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        let base64Image = "";
+
+        imgInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    base64Image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "กำลังอัปโหลดข้อมูลและรูปภาพ...";
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            data.image = base64Image;
+
+            fetch(scriptURL, { method: 'POST', body: JSON.stringify(data)})
+            .then(res => res.json())
+            .then(response => {
+                alert('สำเร็จ! บันทึกข้อมูลใบสมัครเรียบร้อยแล้ว');
+                form.reset();
+                preview.classList.add('hidden');
+                btn.disabled = false;
+                btn.innerText = "🚀 ส่งใบสมัครเข้าสู่ระบบ";
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
