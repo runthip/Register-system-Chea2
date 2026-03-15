@@ -1,0 +1,36 @@
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getActiveSheet();
+    
+    // 1. จัดการรูปภาพ
+    let fileUrl = "ไม่มีรูป";
+    if (data.image) {
+      const folder = DriveApp.getFolderById("ใส่_FOLDER_ID_ของคุณที่นี่");
+      const contentType = data.image.split(",")[0].split(":")[1].split(";")[0];
+      const bytes = Utilities.base64Decode(data.image.split(",")[1]);
+      const fileName = "นักเรียน_" + data.idCard + "_" + data.fullName;
+      const file = folder.createFile(Utilities.newBlob(bytes, contentType, fileName));
+      fileUrl = file.getUrl();
+    }
+
+    // 2. บันทึกข้อมูลลง Sheet
+    sheet.appendRow([
+      new Date(), fileUrl, data.applyDate, data.grade, data.idCard, data.fullName, 
+      data.nickname, data.engName, data.gender, data.dob, data.age, data.birthPlace,
+      data.email, data.blood, data.ethnicity, data.nationality, data.religion, 
+      data.mainLang, data.address, data.livingStatus, data.disability, 
+      data.disadvantage, data.travelMode, data.travelTime, data.distWater, 
+      data.distDirtRoad, data.distPavedRoad, data.swimSkill, data.weight, 
+      data.height, data.disease, data.familyStatus, data.siblings, data.childOrder,
+      data.parentInfo, data.income
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({ "status": "success", "url": fileUrl }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
